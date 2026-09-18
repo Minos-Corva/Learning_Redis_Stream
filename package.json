@@ -1,0 +1,12 @@
+{
+  "name": "redis_streams",
+  "version": "1.0.0",
+  "description": "Learnig Redis Streams",
+  "license": "ISC",
+  "author": "Aryan Kadam",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
