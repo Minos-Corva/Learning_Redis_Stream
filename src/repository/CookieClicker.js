@@ -1,12 +1,6 @@
-import { createClient } from "redis";
-
-class Stream {
-  constructor() {
-    this.client = createClient();
-    this.client.on("error", (err) => console.log("Redis Client Error", err));
-  }
-  async connect() {
-    await this.client.connect();
+class CookieClicker {
+  constructor(client) {
+    this.client = client;
   }
   async click(cookieId) {
     const currentTime = new Date().getTime();
@@ -15,7 +9,7 @@ class Stream {
     }
     const startTime = Number(await this.client.get(cookieId));
     const delta = currentTime - startTime;
-    this.client.xAdd("stream:" + cookieId, "*", {
+    this.client.xAdd("stream:" + cookieId,"*",{
       event: "click",
       time: delta.toString(),
     });
@@ -25,4 +19,4 @@ class Stream {
   }
 }
 
-export { Stream };
+export { CookieClicker };
