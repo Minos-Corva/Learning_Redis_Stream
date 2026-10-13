@@ -6,6 +6,13 @@ class CookieClicker {
     const currentTime = new Date().getTime();
     if ((await this.client.xLen("stream:" + cookieId)) == 0) {
       await this.client.set(cookieId, currentTime.toString());
+      const res1 = await this.client.xGroupCreate(
+        "stream:" + cookieId,
+        "analytics:"+cookieId,
+        '$',{
+          MKSTREAM : true
+        }
+      )
     }
     const startTime = Number(await this.client.get(cookieId));
     const delta = currentTime - startTime;
